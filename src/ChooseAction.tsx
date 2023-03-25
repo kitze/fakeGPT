@@ -12,6 +12,12 @@ export const ChooseAction = ({ onSubmit, onCancel }) => {
     selectedAction.setValue("searched");
   };
 
+  const foundAction = botActions.find(
+    (action) => action.id === selectedAction.value
+  );
+
+  const selectedActionSupportsContent = foundAction?.supportsContent;
+
   return (
     <Vertical className="space-y-3 rounded p-1 bg-gray-700 p-4" center fullW>
       <div className="text-xl">Choose action</div>
@@ -20,11 +26,13 @@ export const ChooseAction = ({ onSubmit, onCancel }) => {
           <option value={action.id}>{action.label}</option>
         ))}
       </select>
-      <input
-        placeholder="Content of the action..."
-        className="input w-full"
-        {...content.eventBind}
-      />
+      {selectedActionSupportsContent && (
+        <input
+          placeholder="Content of the action..."
+          className="input w-full"
+          {...content.eventBind}
+        />
+      )}
 
       <Horizontal fullW className="justify-end space-x-2">
         <button
