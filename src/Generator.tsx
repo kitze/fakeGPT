@@ -6,7 +6,7 @@ import {
   BookOpenIcon,
   CheckCircleIcon,
   CursorArrowRippleIcon,
-  TrashIcon,
+  TrashIcon, UserCircleIcon, UserIcon,
 } from "@heroicons/react/20/solid";
 import {
   UseArray,
@@ -41,7 +41,11 @@ const Message: ReactFC<{
   return (
     <Horizontal fullW className={`bg-grayOne  space-x-4 p-3 ${className}`}>
       {from === MessageFrom.Bot && <Logo onClick={editMode?.toggle} />}
-      {from === MessageFrom.User && <Logo onClick={editMode?.toggle} />}
+      {from === MessageFrom.User && (
+        <Vertical center className="bg-gray-100 rounded-sm p-1 h-[30px] w-[30px]" onClick={editMode?.toggle}>
+          <UserCircleIcon/>
+        </Vertical>
+      )}
       <MessageText>{children}</MessageText>
     </Horizontal>
   );
@@ -70,7 +74,7 @@ function FinishedBrowsing() {
 export const botActions = [
   {
     id: "reading",
-    label: "Reading",
+    label: "Reading content",
     Icon: BookOpenIcon,
   },
   {
@@ -99,7 +103,9 @@ const BotAction: ReactFC<any> = ({ action, children }) => {
         {action.label}
         {children ? ":" : ""}
       </div>
-      {children && <div className="p-2 bg-white rounded text-sm">{children}</div>}
+      {children && (
+        <div className="p-1 px-1.5 bg-white rounded text-sm">{children}</div>
+      )}
     </Horizontal>
   );
 };
@@ -145,7 +151,6 @@ const Editable: ReactFC<{ message: UseInput }> = ({ message }) => {
   return (
     <Vertical fullW className="p3" onClick={editing.setTrue}>
       <textarea
-
         spellCheck={false}
         className="bg-transparent w-full outline-gray-300 resize-none"
         {...message.eventBind}
