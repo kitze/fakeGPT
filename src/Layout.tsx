@@ -51,7 +51,7 @@ export const Horizontal: ReactFC<CommonProps> = ({
   centerV,
   className,
   debug,
-  ...rest,
+  ...rest
 }) => {
   return (
     <div
