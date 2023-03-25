@@ -12,9 +12,9 @@ export const StartScreen = ({ onStart }) => {
       </Vertical>
       <button
         onClick={onStart}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="btn btn-primary"
       >
-        Get started
+        Create a conversation
       </button>
     </Vertical>
   );

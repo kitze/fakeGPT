@@ -21,6 +21,7 @@ export const Vertical: ReactFC<CommonProps> = ({
   centerV,
   className,
   debug,
+  ...rest
 }) => {
   return (
     <div
@@ -34,6 +35,7 @@ export const Vertical: ReactFC<CommonProps> = ({
     ${className || ""}
     ${debug ? "border-2 border-red-500" : ""}
   `}
+      {...rest}
     >
       {children}
     </div>
@@ -49,6 +51,7 @@ export const Horizontal: ReactFC<CommonProps> = ({
   centerV,
   className,
   debug,
+  ...rest,
 }) => {
   return (
     <div
@@ -62,6 +65,7 @@ export const Horizontal: ReactFC<CommonProps> = ({
         ${className || ""}
     ${debug ? "border-2 border-teal-500" : ""}
     `}
+      {...rest}
     >
       {children}
     </div>

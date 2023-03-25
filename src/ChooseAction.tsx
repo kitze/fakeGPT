@@ -13,7 +13,7 @@ export const ChooseAction = ({ onSubmit, onCancel }) => {
   };
 
   return (
-    <Vertical className="space-y-3 border border-gray-500 rounded p-5" center fullW>
+    <Vertical className="space-y-3 rounded p-1 bg-gray-700 p-4" center fullW>
       <div className="text-xl">Choose action</div>
       <select className="select w-full max-w-xs" {...selectedAction.eventBind}>
         {botActions.map((action) => (
@@ -38,7 +38,7 @@ export const ChooseAction = ({ onSubmit, onCancel }) => {
         </button>
 
         <button
-          className="btn btn-sm btn-success"
+          className="btn btn-sm btn-primary"
           onClick={() => {
             onSubmit({
               actionId: selectedAction.value,

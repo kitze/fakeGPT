@@ -6,7 +6,9 @@ import {
   BookOpenIcon,
   CheckCircleIcon,
   CursorArrowRippleIcon,
-  TrashIcon, UserCircleIcon, UserIcon,
+  TrashIcon,
+  UserCircleIcon,
+  UserIcon,
 } from "@heroicons/react/20/solid";
 import {
   UseArray,
@@ -42,8 +44,12 @@ const Message: ReactFC<{
     <Horizontal fullW className={`bg-grayOne  space-x-4 p-3 ${className}`}>
       {from === MessageFrom.Bot && <Logo onClick={editMode?.toggle} />}
       {from === MessageFrom.User && (
-        <Vertical center className="bg-gray-100 rounded-sm p-1 h-[30px] w-[30px]" onClick={editMode?.toggle}>
-          <UserCircleIcon/>
+        <Vertical
+          center
+          className="bg-gray-100 rounded-sm p-1 h-[30px] w-[30px]"
+          onClick={editMode?.toggle}
+        >
+          <UserCircleIcon />
         </Vertical>
       )}
       <MessageText>{children}</MessageText>
@@ -160,7 +166,7 @@ const Editable: ReactFC<{ message: UseInput }> = ({ message }) => {
   );
 };
 
-const BotMessage = ({ actions, editMode, message }) => {
+const BotMessage = ({ actions, addAction, editMode, message }) => {
   return (
     <Message editMode={editMode} from={MessageFrom.Bot} className="bg-grayTwo">
       <Vertical fullW className="space-y-3 ">
@@ -169,6 +175,7 @@ const BotMessage = ({ actions, editMode, message }) => {
           {actions.value.length > 0 && (
             <BotActions editMode={editMode} actions={actions} />
           )}
+          {addAction}
         </Vertical>
         <Editable message={message} />
       </Vertical>
@@ -204,13 +211,12 @@ export const Generator = () => {
     <Vertical className="space-y-2" fullW>
       {editMode.value && (
         <Vertical className="space-y-2">
-          <button className="btn btn-primary" onClick={adding.setTrue}>
-            Add message
-          </button>
-          <div className="text-xs text-gray-300 max-w-lg text-center m-auto">
-            You are currently in edit mode, if you want to take a screenshot
-            without editing UI elements, tap the chatGPT logo and they will
-            disappear.
+          <div className="text-xs p-3 text-gray-300 max-w-lg text-center m-auto">
+            This tool allows you to create a fake screenshot of ChatGPT visiting
+            a website, reading content, etc. It's mostly made for memes and
+            lulz. <br /> <br /> You are currently in edit mode, if you want to
+            take a screenshot without editing UI elements, tap the chatGPT logo
+            and they will disappear.
           </div>
         </Vertical>
       )}
@@ -220,7 +226,19 @@ export const Generator = () => {
         </Vertical>
       )}
       <UserMessage editMode={editMode} message={userMessage} />
-      <BotMessage editMode={editMode} actions={actions} message={botAnswer} />
+      <BotMessage
+        addAction={
+          <button
+            className="btn btn-sm self-start btn-primary"
+            onClick={adding.setTrue}
+          >
+            Add bot action
+          </button>
+        }
+        editMode={editMode}
+        actions={actions}
+        message={botAnswer}
+      />
     </Vertical>
   );
 };

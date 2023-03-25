@@ -4,7 +4,7 @@ import { Generator } from "./Generator";
 import {Vertical} from "./Layout";
 
 function App() {
-  const started = useBoolean(true);
+  const started = useBoolean(false);
 
   return (
     <Vertical center className="App bg-grayTwo">
