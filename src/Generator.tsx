@@ -1,7 +1,7 @@
 import React from "react";
-import {Horizontal, ReactFC, Vertical} from "./Layout";
-import {Logo} from "./Logo";
-import {ChevronUpIcon, MagnifyingGlassIcon} from "@heroicons/react/24/solid";
+import { Horizontal, ReactFC, Vertical } from "./Layout";
+import { Logo } from "./Logo";
+import { ChevronUpIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import {
   BookOpenIcon,
   CheckCircleIcon,
@@ -9,8 +9,15 @@ import {
   TrashIcon,
   UserCircleIcon,
 } from "@heroicons/react/20/solid";
-import {UseArray, useArray, UseBoolean, useBoolean, UseInput, useInput,} from "react-hanger";
-import {ChooseAction} from "./ChooseAction";
+import {
+  UseArray,
+  useArray,
+  UseBoolean,
+  useBoolean,
+  UseInput,
+  useInput,
+} from "react-hanger";
+import { ChooseAction } from "./ChooseAction";
 
 type TW = ReactFC<{ className?: string }>;
 
@@ -74,25 +81,25 @@ export const botActions = [
     id: "reading",
     label: "Reading content",
     Icon: BookOpenIcon,
-    supportsContent: false
+    supportsContent: false,
   },
   {
     id: "searched",
     label: "Searched",
     Icon: MagnifyingGlassIcon,
-    supportsContent: true
+    supportsContent: true,
   },
   {
     id: "clickedOn",
     label: "Clicked on",
     Icon: CursorArrowRippleIcon,
-    supportsContent: true
+    supportsContent: true,
   },
   {
     id: "finishedBrowsing",
     label: "Finished browsing",
     Icon: CheckCircleIcon,
-    supportsContent: false
+    supportsContent: false,
   },
 ];
 
@@ -224,12 +231,14 @@ export const Generator = () => {
       <UserMessage editMode={editMode} message={userMessage} />
       <BotMessage
         addAction={
-          <button
-            className="btn btn-sm self-start btn-primary"
-            onClick={adding.setTrue}
-          >
-            Add bot action
-          </button>
+          editMode.value ? (
+            <button
+              className="btn btn-sm self-start btn-primary"
+              onClick={adding.setTrue}
+            >
+              Add bot action
+            </button>
+          ) : null
         }
         editMode={editMode}
         actions={actions}
